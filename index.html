@@ -68,9 +68,9 @@
 <h1> Отправка на сервер - Category </h1>
 <form method="post" name="form2" id="form2" style="background-color:Fuchsia;">
     <p> Имя <input name="name" type="text"> </p>
-    <p>Картинка <input name="image" type="file"> </p>
+    <p>Картинка <input name="image" type="file" id="imageInput" accept="image/*" /> </p>
     
-
+ <img id="preview" style="max-width: 300px; display:none;" alt="Preview" />
 
 </form>
 <p><button type="button" id="btn">отправка на сервер</button> </p>

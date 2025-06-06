@@ -101,6 +101,27 @@ const f =document.getElementById('f')
 });
 //*****************************вставка картинок category******************************************** */
 const form2 = document.getElementById('form2');
+const imageInput = document.getElementById('imageInput');
+const preview = document.getElementById('preview');
+
+// Обработчик выбора файла — показываем превью
+imageInput.addEventListener('change', function() {
+  const file = this.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      preview.src = e.target.result; // Устанавливаем источник картинки
+      preview.style.display = 'block'; // Показываем <img>
+    };
+    reader.readAsDataURL(file); // Читаем файл как Data URL
+  } else {
+    preview.src = '';
+    preview.style.display = 'none';
+  }
+});
+
+
+
 function datas() {
   let token = localStorage.getItem('jwtToken');
   if (!token) {
