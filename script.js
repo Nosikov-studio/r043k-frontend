@@ -18,41 +18,59 @@ const f =document.getElementById('f')
     headers: {
       'Content-Type': 'application/json',
       },
-    body: JSON.stringify({
-      ...FormDataObject,
-      views: 0,
-    }),
-  credentials: 'include', //чтобы браузер принял куки от сервера и отправлял их в последующих запросах
+    body: JSON.stringify(FormDataObject),
+  //credentials: 'include', //чтобы браузер принял куки от сервера и отправлял их в последующих запросах
   })
-    .then(response => response.json())
-    .then(j => {
-      console.log(j);          
-    secretField1.style.display = 'block';      // Показываем скрытое поле 1
-    secretField2.style.display = 'block';     // Показываем скрытое поле 2
-    secretField2.textContent = j.message;
-      form1.reset(); // очищаем форму
+    .then(data => {
+      // Предполагается, что сервер возвращает { access_token: "..." }
+      const token = data.access_token;
+      if (!token) {
+        throw new Error('Токен не получен');
+      }
+      // Сохраняем токен в localStorage
+      localStorage.setItem('jwtToken', token);
+
+      secretField1.style.display = 'block';
+      secretField2.style.display = 'block';
+      secretField2.textContent = 'Успешный вход';
+
+      form1.reset();
+    })
+    .catch(error => {
+      secretField1.style.display = 'none';
+      secretField2.style.display = 'block';
+      secretField2.textContent = 'Ошибка: ' + error.message;
     });
-  });
-
-//////////////////////////////////////////////////////////////
-
-
-//////////////////////////////////////////////////////////////
+});
 
 function datas() {
+  const token = localStorage.getItem('jwtToken');
+  if (!token) {
+    f.innerHTML = '<p>Пользователь не авторизован</p>';
+    return;
+  }
 
-fetch('https://truruki.ru/test', {
+  fetch('https://truruki.ru/test', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-     // 'Authorization': `Bearer ${token}`
-      },    
-    credentials: 'include', //куки 
+      'Authorization': `Bearer ${token}`, // передаем токен в заголовке
+    },
+    // credentials: 'include' не нужен
   })
-    .then(response => response.json())
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Ошибка доступа');
+      }
+      return response.json();
+    })
     .then(j => {
       const html = j.message;
-      f.innerHTML =`<p> ${html} </p>`})
+      f.innerHTML = `<p>${html}</p>`;
+    })
+    .catch(error => {
+      f.innerHTML = `<p>Ошибка: ${error.message}</p>`;
+    });
 }
 
 butt.addEventListener('click', datas);
