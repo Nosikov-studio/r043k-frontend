@@ -62,6 +62,10 @@ const f =document.getElementById('f')
       if (!token) {
         throw new Error('Токен не получен');
       }
+        // Убираем префикс 'Bearer ' если есть
+          if (token.startsWith('Bearer ')) {
+            token = token.slice(7);
+          }
       // Сохраняем токен в localStorage
       localStorage.setItem('jwtToken', token);
 
