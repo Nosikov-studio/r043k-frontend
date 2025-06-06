@@ -1,6 +1,35 @@
+//*****************************register******************************************** */
 
-//************************************************************************* */
+const form0 = document.getElementById('form0');
+  form0.addEventListener('submit', function(event) {
+    event.preventDefault();
+
+  const formData = new FormData(form0); // Сбор данных формы
+  const FormDataObject = Object.fromEntries(formData);
+
+  fetch('https://truruki.ru/api/auth/login', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      },
+    body: JSON.stringify(FormDataObject),
+  
+  })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Ошибка авторизации');
+      }
+      return response.json(); // преобразуем ответ в JSON
+    })
+    .then(data => {
+    })
+    .catch(error => {
+    });
+});
+
+//*****************************login******************************************** */
 const form1 = document.getElementById('form1');
+
 const secretField1 = document.getElementById('secretField1');
 const secretField2 = document.getElementById('secretField2');
 const butt = document.getElementById('btn');
@@ -48,7 +77,8 @@ const f =document.getElementById('f')
       secretField2.textContent = 'Ошибка: ' + error.message;
     });
 });
-
+//*****************************category******************************************** */
+const form2 = document.getElementById('form2');
 function datas() {
   const token = localStorage.getItem('jwtToken');
   if (!token) {
