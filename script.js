@@ -21,6 +21,12 @@ const f =document.getElementById('f')
     body: JSON.stringify(FormDataObject),
   
   })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Ошибка авторизации');
+      }
+      return response.json(); // преобразуем ответ в JSON
+    })
     .then(data => {
       // Предполагается, что сервер возвращает { access_token: "..." }
       const token = data.token;
