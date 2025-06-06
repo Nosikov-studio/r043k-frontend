@@ -14,9 +14,28 @@
             button {
              background: green; 
             }
+            TABLE {
+             font-size: 50px;
+             background: beige; /* Цвет фона таблицы */
+             border: 5px double #000; /* Рамка вокруг таблицы */
+            }
+            TD, TH {
+             padding: 5px; /* Поля вокруг текста */
+             border: 2px solid black; /* Рамка вокруг ячеек */
+            }
         </style>
 </head>
 <body>
+<h1> Данные из БД</h1>
+    <form class="f5">
+        <h2> ******************** </h2>
+        <button type="submit">
+            Загрузить информацию с сервера 5
+        </button>
+    </form>
+    <div class="result5"> </div>
+    
+<p> ****************************************************************************</p>    
 <h1> Регистрация</h1>
 <form method="post" name="form0" id="form0" style="background-color:Goldenrod;">
     <p>Логин <input name="email" type="text"> </p>

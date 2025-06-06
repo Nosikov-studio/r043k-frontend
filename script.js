@@ -1,3 +1,21 @@
+const f5 = document.querySelector('.f5')
+const r5 = document.querySelector('.result5')
+
+// **********************получение данных из БД и вставка в таблицу***************************
+function tb() {
+
+fetch('https://truruki.ru/api/category')
+    .then(response => response.json())
+    .then(j => {
+      const html = j.map(item => `<tr><td>${item.name}</td><td>${item.image}</td><tr>`).join('');
+      r5.innerHTML =`<table> ${html} </table>`;
+      
+})
+}
+
+tb();
+
+
 //*****************************register******************************************** */
 
 const form0 = document.getElementById('form0');
