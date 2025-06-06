@@ -4,7 +4,13 @@ const r5 = document.querySelector('.result5')
 // **********************получение данных из БД и вставка в таблицу***************************
 function tb() {
 
-fetch('https://truruki.ru/api/category')
+fetch('https://truruki.ru/api/category', {
+    method: 'GET',
+    headers: {
+    
+      'Authorization': `Bearer ${token}`, // передаем токен в заголовке
+    },
+  })
     .then(response => response.json())
     .then(j => {
       const html = j.map(item => `<tr><td>${item.name}</td><td>${item.imageSrc}</td><tr>`).join('');
