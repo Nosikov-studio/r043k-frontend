@@ -90,17 +90,17 @@ function datas() {
     return;
   }
 
-  const formData2 = new FormData(form2); // Сбор данных формы
-  const FormDataObject2 = Object.fromEntries(formData2);
+  const formData2 = new FormData(form2); // // Сбор данных формы с файлом
+  //const FormDataObject2 = Object.fromEntries(formData2);
 
 
   fetch('https://truruki.ru/api/category', {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json',
+    //  'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`, // передаем токен в заголовке
     },
-    body: JSON.stringify(FormDataObject2),
+    body: formData2, // Отправляем FormData напрямую
   })
     .then(response => {
       if (!response.ok) {
