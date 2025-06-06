@@ -152,6 +152,8 @@ function datas() {
       f.innerHTML = `<p>${html}</p>`;
       tb();  
       form2.reset(); // очищаем форму
+      preview.src = '';
+      preview.style.display = 'none';
     })
     .catch(error => {
       f.innerHTML = `<p>Ошибка: ${error.message}</p>`;
