@@ -58,7 +58,7 @@ const f =document.getElementById('f')
     })
     .then(data => {
       // Предполагается, что сервер возвращает { access_token: "..." }
-      const token = data.token;
+      let token = data.token;
       if (!token) {
         throw new Error('Токен не получен');
       }
@@ -84,7 +84,7 @@ const f =document.getElementById('f')
 //*****************************category******************************************** */
 const form2 = document.getElementById('form2');
 function datas() {
-  const token = localStorage.getItem('jwtToken');
+  let token = localStorage.getItem('jwtToken');
   if (!token) {
     f.innerHTML = '<p>Пользователь не авторизован</p>';
     return;
