@@ -7,7 +7,7 @@ function tb() {
 fetch('https://truruki.ru/api/category')
     .then(response => response.json())
     .then(j => {
-      const html = j.map(item => `<tr><td>${item.name}</td><td>${item.image}</td><tr>`).join('');
+      const html = j.map(item => `<tr><td>${item.name}</td><td>${item.imageSrc}</td><tr>`).join('');
       r5.innerHTML =`<table> ${html} </table>`;
       
 })
