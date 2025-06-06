@@ -129,6 +129,8 @@ function datas() {
     .then(j => {
       const html = j.message;
       f.innerHTML = `<p>${html}</p>`;
+      tb();  
+      form2.reset(); // очищаем форму
     })
     .catch(error => {
       f.innerHTML = `<p>Ошибка: ${error.message}</p>`;
