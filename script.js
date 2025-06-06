@@ -60,7 +60,7 @@ function datas() {
   const FormDataObject2 = Object.fromEntries(formData2);
 
 
-  fetch('https://truruki.ru//api/category', {
+  fetch('https://truruki.ru/api/category', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
