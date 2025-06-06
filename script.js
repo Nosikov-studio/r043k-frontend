@@ -99,7 +99,7 @@ const f =document.getElementById('f')
       secretField2.textContent = 'Ошибка: ' + error.message;
     });
 });
-//*****************************category******************************************** */
+//*****************************вставка картинок category******************************************** */
 const form2 = document.getElementById('form2');
 function datas() {
   let token = localStorage.getItem('jwtToken');
