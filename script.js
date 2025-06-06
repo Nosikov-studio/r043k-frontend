@@ -19,11 +19,11 @@ const f =document.getElementById('f')
       'Content-Type': 'application/json',
       },
     body: JSON.stringify(FormDataObject),
-  //credentials: 'include', //чтобы браузер принял куки от сервера и отправлял их в последующих запросах
+  
   })
     .then(data => {
       // Предполагается, что сервер возвращает { access_token: "..." }
-      const token = data.access_token;
+      const token = data.token;
       if (!token) {
         throw new Error('Токен не получен');
       }
@@ -56,7 +56,7 @@ function datas() {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`, // передаем токен в заголовке
     },
-    // credentials: 'include' не нужен
+    
   })
     .then(response => {
       if (!response.ok) {
