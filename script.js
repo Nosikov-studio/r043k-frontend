@@ -7,7 +7,7 @@ const form0 = document.getElementById('form0');
   const formData = new FormData(form0); // Сбор данных формы
   const FormDataObject = Object.fromEntries(formData);
 
-  fetch('https://truruki.ru/api/auth/login', {
+  fetch('https://truruki.ru/api/auth/register', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
