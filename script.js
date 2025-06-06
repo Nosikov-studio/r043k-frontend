@@ -41,10 +41,6 @@ const f =document.getElementById('f')
 
 function datas() {
 
-
-
-
-
 fetch('https://truruki.ru/test', {
     method: 'POST',
     headers: {
